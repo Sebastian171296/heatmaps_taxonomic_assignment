@@ -46,3 +46,4 @@ python y-axe.py
 echo "y-axis was sorted" 
 echo "creating heatmap" 
 python Visualization_taxo_assignment.py
+echo "done"
