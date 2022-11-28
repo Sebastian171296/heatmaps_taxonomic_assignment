@@ -36,7 +36,7 @@ python make_heatmap_taxo_assignment.py
 echo "dataframe was created"
 echo "sorting x-axis"
 conda activate ete3 
-python sorter.py
+python sorter_subset_taxo_assignment.py
 echo "x-axes was sorted" 
 conda deactivate
 conda activate heatmap
