@@ -39,7 +39,7 @@ for group in groups:
                 l = l.replace('\n', "")
                 query_sorted.append(l)
     except:
-        print('No sorted y axis')
+        #print('No sorted y axis')
         with open(input_path + 'query_phyla_' + group + '.txt') as f:
             lines = f.readlines()
             for l in lines:
@@ -53,7 +53,7 @@ for group in groups:
                 l = l.replace('\n', "")
                 event_sorted.append(l)
     except:
-        print('No sorted x axis')
+        #print('No sorted x axis')
         with open(input_path + 'event_phyla_' + group + '.txt') as f:
             lines = f.readlines()
             for l in lines:
