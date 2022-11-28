@@ -35,7 +35,7 @@ python make_heatmap_best_hit.py
 echo "dataframe was created"
 echo "sorting x-axes"
 conda activate ete3 
-python sorter.py
+python sorter_best_hit.py
 echo "x-axes was sorted" 
 conda deactivate
 conda activate heatmap
