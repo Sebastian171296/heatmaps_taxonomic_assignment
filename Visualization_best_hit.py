@@ -70,6 +70,7 @@ for group in groups:
     heatmap = heatmap.drop('has_pathogens', axis=1)
     heatmap_short = heatmap.copy()
     heatmap_short = heatmap_short.drop('query_vis_level', axis=1)
+    print(heatmap_short)
     heatmap_short = heatmap_short[event_sorted]
  
     if reduced:

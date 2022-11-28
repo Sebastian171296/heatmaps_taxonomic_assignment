@@ -38,6 +38,7 @@ not_found_phylum = []
 double_species = []
 finished = []
 
+
 # Left out events
 inLineage = []
 
@@ -50,6 +51,7 @@ for group, path_name in groups:
     query_ID = []
     query_phylum = []
     query_name = []
+    event_ids = []
     event_phyla = ['species', 'query_vis_level', 'has_actinomycetia', 'has_pathogens']
     heatmap = pd.DataFrame(0, index=query_ID, columns=event_phyla)
     for root, subdirectories, files in os.walk(input_data):
@@ -109,12 +111,14 @@ for group, path_name in groups:
                                     heatmap.at[name, 'has_pathogens'] = 'T'
 #                                print(event_tax)                         
                                 event_phylum = event_tax.rank_name_dictionary.get('genus')
-                                print(event_phylum)                         
+                                                        
                                 if event_phylum not in event_phyla:
                                     if event_phylum is not None:
-                                    	event_phyla.append(event_phylum)
-                                    	heatmap.insert(len(heatmap.columns), event_phylum, 0)
-                                    	heatmap.at[name, event_phylum] = count
+                                      event_phyla.append(event_phylum)
+                                      id = taxopy.taxid_from_name(event_phylum, tax_db)                                    
+                                      event_ids.append(id[0])
+                                      heatmap.insert(len(heatmap.columns), event_phylum, 0)
+                                      heatmap.at[name, event_phylum] = count
                                     else:
                                     	continue
                                 else:
@@ -163,4 +167,8 @@ with open(output_path + 'inLineage.txt', 'w') as f:
 f.close()
 with open(output_path + 'finished.txt', 'w') as f:
     f.write("\n".join(map(str, finished)))
+f.close()
+
+with open(output_path + 'event_ids.txt', 'w') as f:
+    f.write("\n".join(map(str, event_ids)))
 f.close()
