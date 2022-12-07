@@ -72,7 +72,7 @@ for group, path_name in groups:
                         name = query.name
                         if name in heatmap.index:
                             double_species.append(query.name)
-                            break
+                            continue
                         new_query = pd.DataFrame(0, index=[name], columns=event_phyla)
                         heatmap = pd.concat([heatmap, new_query], ignore_index=False, axis=0)
                         try:
