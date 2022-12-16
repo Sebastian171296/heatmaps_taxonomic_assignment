@@ -6,7 +6,6 @@ import warnings
 warnings.filterwarnings("ignore")
 
 
-## Variables
 # Change paths to NCBI database for taxopy (used for the taXaminer analysis) and taXaminer results
 tax_db = taxopy.TaxDb(nodes_dmp='/share/project2/sebastian/taXaminer-main/nodes.dmp', names_dmp='/share/project2/sebastian/taXaminer-main/names.dmp', keep_files=True)
 input_path = '/share/project/freya/soil_invertebrates/filtered/taxaminer_reports'
@@ -58,6 +57,7 @@ for group, path_name in groups:
         for subdirectory in subdirectories:
                 file = os.path.join(root, subdirectory)
                 file = os.path.join(file, 'taxonomic_assignment/')
+                print(file)
                 if not os.path.exists(file):
                     missing_files.append(f'Missing taxonomic_assignment directory: {subdirectory,file}')
                     continue
@@ -71,6 +71,7 @@ for group, path_name in groups:
                         inLineage.append(query.rank_name_dictionary)
                         name = query.name
                         if name in heatmap.index:
+                            df.isin([query.name]).any()
                             double_species.append(query.name)
                             continue
                         new_query = pd.DataFrame(0, index=[name], columns=event_phyla)
